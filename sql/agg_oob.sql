@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS test_wdflbzfx;
 CREATE TABLE test_wdflbzfx (
     recno    SERIAL,
     v1	     hll
-);
+) DISTRIBUTED RANDOMLY;
 
 INSERT INTO test_wdflbzfx (recno, v1) VALUES
 -- NULL --

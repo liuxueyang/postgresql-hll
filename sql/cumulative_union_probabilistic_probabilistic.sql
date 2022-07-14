@@ -12,7 +12,7 @@ CREATE TABLE test_mpuahgwy (
     compressed_multiset         hll,
     union_cardinality           double precision,
     union_compressed_multiset   hll
-);
+) DISTRIBUTED RANDOMLY;
 
 -- Copy the CSV data into the table
 --

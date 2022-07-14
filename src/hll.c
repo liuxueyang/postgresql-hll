@@ -37,6 +37,8 @@
 #endif
 #include "access/sysattr.h"
 #include "access/htup_details.h"
+#include "cdb/cdbdisp_query.h"
+#include "cdb/cdbvars.h"
 #include "commands/extension.h"
 #include "optimizer/planner.h"
 #include "utils/array.h"
@@ -2824,11 +2826,20 @@ hll_set_max_sparse(PG_FUNCTION_ARGS)
 {
     int32 old_maxsparse = g_max_sparse;
     int32 maxsparse = PG_GETARG_INT32(0);
+    StringInfoData sql;
 
     if (maxsparse < -1)
         ereport(ERROR,
                 (errcode(ERRCODE_DATA_EXCEPTION),
                  errmsg("sparse threshold must be in range [-1,MAXINT]")));
+
+    if (IS_QUERY_DISPATCHER())
+    {
+        initStringInfo(&sql);
+        appendStringInfo(&sql, "select hll_set_max_sparse(%d);", maxsparse);
+        CdbDispatchCommand(sql.data, DF_NONE, NULL);
+        pfree(sql.data);
+    }
 
     g_max_sparse = maxsparse;
 

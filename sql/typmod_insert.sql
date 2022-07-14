@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS test_trsybeqs;
 
 CREATE TABLE test_trsybeqs (
     val   hll(10)
-);
+) DISTRIBUTED RANDOMLY;
 
 -- ERROR:  register count does not match: source uses 2048 and dest uses 1024
 INSERT INTO test_trsybeqs(val) VALUES (

@@ -11,7 +11,7 @@ SELECT :'server_version_num' >= 90400 AND :'server_version_num' < 90500 as versi
 
 SELECT hll_set_output_version(1);
 
-CREATE TABLE tt1(id int, col_1 int, sd hll);
+CREATE TABLE tt1(id int, col_1 int, sd hll) DISTRIBUTED RANDOMLY;
 INSERT INTO tt1 values(1,1, hll_empty());
 INSERT INTO tt1 values(1,2, hll_empty());
 UPDATE tt1 SET sd = hll_add(sd, hll_hash_integer(111)) WHERE id = 1 and col_1 = 1;
@@ -92,11 +92,11 @@ FROM
 GROUP BY(id)
 HAVING hll_cardinality(hll_union_agg(sd)) > 1;
 
--- Test hll_add_agg, first set work_mem to 256MB in order to use hash aggregate
+-- Test hll_add_agg, first set statement_mem to 256MB in order to use hash aggregate
 -- before forcing group aggregate
-SET work_mem TO '256MB';
+SET statement_mem TO '256MB';
 
-CREATE TABLE add_test_table(c1 bigint, c2 bigint);
+CREATE TABLE add_test_table(c1 bigint, c2 bigint) DISTRIBUTED RANDOMLY;
 INSERT INTO add_test_table SELECT g, g FROM generate_series(1, 1000) AS g;
 
 -- Test with different hll_add_agg signatures
@@ -180,6 +180,5 @@ FROM
 	add_test_table 
 GROUP BY 1;
 
-RESET work_mem;
 DROP TABLE tt1;
 DROP TABLE add_test_table;

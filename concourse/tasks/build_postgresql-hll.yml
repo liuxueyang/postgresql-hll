@@ -1,0 +1,19 @@
+platform: linux
+image_resource:
+  type: docker-image
+inputs:
+  - name: bin_gpdb
+  - name: postgresql-hll_src
+  - name: gpdb_src
+  #! - name: last_released_postgresql-hll_bin
+
+outputs:
+  - name: postgresql-hll_artifacts
+
+run:
+  path: postgresql-hll_src/concourse/scripts/entry.sh
+  args:
+    - build
+params:
+  POSTGRESQL_HLL_OS:
+  BUILD_TYPE:
