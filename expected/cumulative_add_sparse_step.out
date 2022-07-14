@@ -14,7 +14,7 @@ CREATE TABLE test_lunfjncl (
     cardinality                 double precision,
     raw_value                   bigint,
     union_compressed_multiset   hll
-);
+) DISTRIBUTED RANDOMLY;
 -- Copy the CSV data into the table
 --
 \copy test_lunfjncl (cardinality, raw_value, union_compressed_multiset)  from sql/data/cumulative_add_sparse_step.csv with csv header

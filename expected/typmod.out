@@ -10,179 +10,192 @@ SELECT hll_set_output_version(1);
 DROP TABLE IF EXISTS test_qiundgkm;
 NOTICE:  table "test_qiundgkm" does not exist, skipping
 -- Using all defaults.
-CREATE TABLE test_qiundgkm (v1 hll);
+CREATE TABLE test_qiundgkm (v1 hll) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-          Table "public.test_qiundgkm"
- Column | Type | Collation | Nullable | Default 
---------+------+-----------+----------+---------
- v1     | hll  |           |          | 
+Table "public.test_qiundgkm"
+ Column | Type | Modifiers 
+--------+------+-----------
+ v1     | hll  | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
 -- Partial defaults.
-CREATE TABLE test_qiundgkm (v1 hll(10));
+CREATE TABLE test_qiundgkm (v1 hll(10)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type      | Collation | Nullable | Default 
---------+----------------+-----------+----------+---------
- v1     | hll(10,5,-1,1) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |      Type      | Modifiers 
+--------+----------------+-----------
+ v1     | hll(10,5,-1,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(10, 4));
+CREATE TABLE test_qiundgkm (v1 hll(10, 4)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type      | Collation | Nullable | Default 
---------+----------------+-----------+----------+---------
- v1     | hll(10,4,-1,1) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |      Type      | Modifiers 
+--------+----------------+-----------
+ v1     | hll(10,4,-1,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64));
+CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type      | Collation | Nullable | Default 
---------+----------------+-----------+----------+---------
- v1     | hll(10,4,64,1) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |      Type      | Modifiers 
+--------+----------------+-----------
+ v1     | hll(10,4,64,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64, 0));
+CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64, 0)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type      | Collation | Nullable | Default 
---------+----------------+-----------+----------+---------
- v1     | hll(10,4,64,0) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |      Type      | Modifiers 
+--------+----------------+-----------
+ v1     | hll(10,4,64,0) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
 -- ERROR:  invalid number of type modifiers
-CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64, 0, 42));
+CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64, 0, 42)) DISTRIBUTED RANDOMLY;
 ERROR:  invalid number of type modifiers
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64, 0, 42));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64, 0, 42)) DISTRI...
                                        ^
 -- ----------------------------------------------------------------
 -- Range Check log2nregs
 -- ----------------------------------------------------------------
 -- ERROR:  log2m modifier must be between 0 and 17
-CREATE TABLE test_qiundgkm (v1 hll(-1));
+CREATE TABLE test_qiundgkm (v1 hll(-1)) DISTRIBUTED RANDOMLY;
 ERROR:  log2m modifier must be between 0 and 17
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(-1));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(-1)) DISTRIBUTED RANDOMLY...
                                        ^
-CREATE TABLE test_qiundgkm (v1 hll(0));
+CREATE TABLE test_qiundgkm (v1 hll(0)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-              Table "public.test_qiundgkm"
- Column |     Type      | Collation | Nullable | Default 
---------+---------------+-----------+----------+---------
- v1     | hll(0,5,-1,1) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |     Type      | Modifiers 
+--------+---------------+-----------
+ v1     | hll(0,5,-1,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(31));
+CREATE TABLE test_qiundgkm (v1 hll(31)) DISTRIBUTED RANDOMLY;
 ERROR:  log2m modifier must be between 0 and 17
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(31));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(31)) DISTRIBUTED RANDOMLY...
                                        ^
 \d test_qiundgkm
 DROP TABLE test_qiundgkm;
 ERROR:  table "test_qiundgkm" does not exist
 -- ERROR:  log2m modifier must be between 0 and 17
-CREATE TABLE test_qiundgkm (v1 hll(32));
+CREATE TABLE test_qiundgkm (v1 hll(32)) DISTRIBUTED RANDOMLY;
 ERROR:  log2m modifier must be between 0 and 17
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(32));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(32)) DISTRIBUTED RANDOMLY...
                                        ^
 -- ----------------------------------------------------------------
 -- Range Check regwidth
 -- ----------------------------------------------------------------
 -- ERROR:  regwidth modifier must be between 0 and 7
-CREATE TABLE test_qiundgkm (v1 hll(11, -1));
+CREATE TABLE test_qiundgkm (v1 hll(11, -1)) DISTRIBUTED RANDOMLY;
 ERROR:  regwidth modifier must be between 0 and 7
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, -1));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, -1)) DISTRIBUTED RAND...
                                        ^
-CREATE TABLE test_qiundgkm (v1 hll(11, 0));
+CREATE TABLE test_qiundgkm (v1 hll(11, 0)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type      | Collation | Nullable | Default 
---------+----------------+-----------+----------+---------
- v1     | hll(11,0,-1,1) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |      Type      | Modifiers 
+--------+----------------+-----------
+ v1     | hll(11,0,-1,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(11, 7));
+CREATE TABLE test_qiundgkm (v1 hll(11, 7)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type      | Collation | Nullable | Default 
---------+----------------+-----------+----------+---------
- v1     | hll(11,7,-1,1) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |      Type      | Modifiers 
+--------+----------------+-----------
+ v1     | hll(11,7,-1,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
 -- ERROR:  regwidth modifier must be between 0 and 7
-CREATE TABLE test_qiundgkm (v1 hll(11, 8));
+CREATE TABLE test_qiundgkm (v1 hll(11, 8)) DISTRIBUTED RANDOMLY;
 ERROR:  regwidth modifier must be between 0 and 7
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 8));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 8)) DISTRIBUTED RANDO...
                                        ^
 -- ----------------------------------------------------------------
 -- Range Check expthresh
 -- ----------------------------------------------------------------
 -- ERROR:  expthresh modifier must be between -1 and 16383
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, -2));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, -2)) DISTRIBUTED RANDOMLY;
 ERROR:  expthresh modifier must be between -1 and 16383
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, -2));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, -2)) DISTRIBUTED R...
                                        ^
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, -1));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, -1)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type      | Collation | Nullable | Default 
---------+----------------+-----------+----------+---------
- v1     | hll(11,5,-1,1) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |      Type      | Modifiers 
+--------+----------------+-----------
+ v1     | hll(11,5,-1,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, 0));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, 0)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-              Table "public.test_qiundgkm"
- Column |     Type      | Collation | Nullable | Default 
---------+---------------+-----------+----------+---------
- v1     | hll(11,5,0,1) |           |          | 
+    Table "public.test_qiundgkm"
+ Column |     Type      | Modifiers 
+--------+---------------+-----------
+ v1     | hll(11,5,0,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type       | Collation | Nullable | Default 
---------+-----------------+-----------+----------+---------
- v1     | hll(11,5,128,1) |           |          | 
+     Table "public.test_qiundgkm"
+ Column |      Type       | Modifiers 
+--------+-----------------+-----------
+ v1     | hll(11,5,128,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, 4294967296));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, 4294967296)) DISTRIBUTED RANDOMLY;
 ERROR:  expthresh modifier must be between -1 and 16383
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 4294967296));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 4294967296)) DISTR...
                                        ^
 \d test_qiundgkm
 DROP TABLE test_qiundgkm;
 ERROR:  table "test_qiundgkm" does not exist
 -- ERROR:  expthresh modifier must be between -1 and 16383
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, 8589934592));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, 8589934592)) DISTRIBUTED RANDOMLY;
 ERROR:  expthresh modifier must be between -1 and 16383
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 8589934592));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 8589934592)) DISTR...
                                        ^
 -- ----------------------------------------------------------------
 -- Range Check nosparse
 -- ----------------------------------------------------------------
 -- ERROR:  nosparse modifier must be 0 or 1
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, -1));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, -1)) DISTRIBUTED RANDOMLY;
 ERROR:  sparseon modifier must be 0 or 1
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, -1));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, -1)) DISTRIBU...
                                        ^
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 0));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 0)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type       | Collation | Nullable | Default 
---------+-----------------+-----------+----------+---------
- v1     | hll(11,5,128,0) |           |          | 
+     Table "public.test_qiundgkm"
+ Column |      Type       | Modifiers 
+--------+-----------------+-----------
+ v1     | hll(11,5,128,0) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 1));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 1)) DISTRIBUTED RANDOMLY;
 \d test_qiundgkm
-               Table "public.test_qiundgkm"
- Column |      Type       | Collation | Nullable | Default 
---------+-----------------+-----------+----------+---------
- v1     | hll(11,5,128,1) |           |          | 
+     Table "public.test_qiundgkm"
+ Column |      Type       | Modifiers 
+--------+-----------------+-----------
+ v1     | hll(11,5,128,1) | 
+Distributed randomly
 
 DROP TABLE test_qiundgkm;
 -- ERROR:  nosparse modifier must be 0 or 1
-CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 2));
+CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 2)) DISTRIBUTED RANDOMLY;
 ERROR:  sparseon modifier must be 0 or 1
-LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 2));
+LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 2)) DISTRIBUT...
                                        ^
