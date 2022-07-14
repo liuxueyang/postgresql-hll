@@ -23,7 +23,7 @@ CREATE TABLE test_eopzdzwz (
     cardinality                 double precision,
     raw_value                   bigint,
     union_compressed_multiset   hll
-);
+) DISTRIBUTED RANDOMLY;
 -- Copy the CSV data into the table
 --
 \copy test_eopzdzwz (cardinality, raw_value, union_compressed_multiset) from sql/data/cumulative_add_sparse_edge.csv with csv header
