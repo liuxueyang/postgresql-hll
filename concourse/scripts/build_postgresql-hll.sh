@@ -10,6 +10,10 @@ function pkg() {
     [ -f /opt/gcc_env.sh ] && source /opt/gcc_env.sh
     source /usr/local/greenplum-db-devel/greenplum_path.sh
 
+    if [ "${OS_NAME}" = "rhel6" ] || [ "${OS_NAME}" = "rhel7" ]; then
+        export CC="$(which gcc)"
+    fi
+
     pushd /home/gpadmin/postgresql-hll_src
     make clean
     make
