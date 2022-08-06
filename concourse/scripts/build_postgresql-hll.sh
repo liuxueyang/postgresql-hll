@@ -16,6 +16,11 @@ function pkg() {
 
     pushd /home/gpadmin/postgresql-hll_src
     make clean
+
+    echo $CC
+    echo $(which gcc)
+    gcc --version
+
     make
     make install
     popd
