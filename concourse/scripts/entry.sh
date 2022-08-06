@@ -106,7 +106,6 @@ function setup_gpadmin_bashrc() {
     {
         echo "source /usr/local/greenplum-db-devel/greenplum_path.sh"
         echo "export OS_NAME=${OS_NAME}"
-        echo "export PATH=${CMAKE_HOME}/bin:\$PATH"
     } >> /home/gpadmin/.bashrc
 }
 
