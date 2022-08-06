@@ -76,7 +76,6 @@ plan:
 
 #! Like the entrance_job, with more static checks.
 #@ def entrance_check_job(param):
-#@   add_res_by_name(param["res_map"], "clang-format-image")
 #@   trigger = param["trigger"]
 name: entrance
 on_failure: #@ trigger["on_failure"]
@@ -89,15 +88,6 @@ plan:
 #@   for to_put in trigger["to_put_pre"]:
 - #@ to_put
 #@   end
-- get: clang-format-image
-- task: check_clang_format
-  image: clang-format-image
-  config:
-    inputs:
-      - name: postgresql-hll_src
-    platform: linux
-    run:
-      path: postgresql-hll_src/concourse/scripts/check-clang-format.sh
 #@ end
 
 #@ def exit_job(param):
@@ -180,25 +170,42 @@ plan:
 
 #@ def _build_task(conf):
 task: #@ "build_" + conf["os"]
-file: postgresql-hll_src/concourse/tasks/build_postgresql-hll.yml
+config:
+  platform: linux
+  inputs:
+    - name: bin_gpdb
+    - name: postgresql-hll_src
+    - name: gpdb_src
+  outputs:
+    - name: bin_postgresql-hll
+  run:
+    path: postgresql-hll_src/concourse/scripts/entry.sh
+    args:
+      - build
 image: #@ conf["res_build_image"]
 input_mapping:
   bin_gpdb: #@ conf["res_gpdb_bin"]
 params:
-  POSTGRESQL_HLL_OS: #@ conf["os"]
   BUILD_TYPE: #@ conf["build_type"]
 #@ end
 
 #@ def _test_task(conf):
 task: #@ "test_" + conf["os"]
 timeout: 2h
-file: postgresql-hll_src/concourse/tasks/test_postgresql-hll.yml
+config:
+  platform: linux
+  inputs:
+    - name: bin_gpdb
+    - name: postgresql-hll_src
+    - name: bin_postgresql-hll
+    - name: gpdb_src
+  run:
+    path: postgresql-hll_src/concourse/scripts/entry.sh
+    args:
+      - test
 image: #@ conf["res_test_image"]
 input_mapping:
   bin_gpdb: #@ conf["res_gpdb_bin"]
-  bin_postgresql-hll: postgresql-hll_artifacts
-params:
-  POSTGRESQL_HLL_OS: #@ conf["os"]
 #@ end
 
 #@ def build_test_job_name(conf):
@@ -233,5 +240,5 @@ plan:
 - #@ _test_task(conf)
 - put: #@ conf["res_intermediates_bin"]
   params:
-    file: postgresql-hll_artifacts/postgresql-hll.tar.gz
+    file: bin_postgresql-hll/postgresql-hll.tar.gz
 #@ end
