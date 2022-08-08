@@ -161,35 +161,6 @@ resources:
     json_key: ((concourse-gcs-resources-service-account-key))
     regexp: server/published/gpdb6/server-rc-(.*)-ubuntu18.04_x86_64.tar.gz
 
-# Postgresql-Hll releases
-#! - name: bin_postgresql-hll_gpdb6_rhel6
-#!   type: gcs
-#!   source:
-#!     bucket: ((gcs-bucket))
-#!     json_key: ((concourse-gcs-resources-service-account-key))
-#!     regexp: postgresql-hll/released/gpdb6/postgresql-hll-(.*)-rhel6_x86_64.tar.gz
-
-#! - name: bin_postgresql-hll_gpdb6_rhel7
-#!   type: gcs
-#!   source:
-#!     bucket: ((gcs-bucket))
-#!     json_key: ((concourse-gcs-resources-service-account-key))
-#!     regexp: postgresql-hll/released/gpdb6/postgresql-hll-(.*)-rhel7_x86_64.tar.gz
-
-#! - name: bin_postgresql-hll_gpdb6_rhel8
-#!   type: gcs
-#!   source:
-#!     bucket: ((gcs-bucket))
-#!     json_key: ((concourse-gcs-resources-service-account-key))
-#!     regexp: postgresql-hll/released/gpdb6/postgresql-hll-(.*)-rhel8_x86_64.tar.gz
-
-#! - name: bin_postgresql-hll_gpdb6_ubuntu18
-#!   type: gcs
-#!   source:
-#!     bucket: ((gcs-bucket))
-#!     json_key: ((concourse-gcs-resources-service-account-key))
-#!     regexp: postgresql-hll/released/gpdb6/postgresql-hll-(.*)-ubuntu18.04_x86_64.tar.gz
-
 # For uploading every build to gcs
 # Dev
 - name: bin_postgresql-hll_gpdb6_rhel6_intermediates

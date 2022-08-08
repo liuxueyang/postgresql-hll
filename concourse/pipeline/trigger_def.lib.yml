@@ -84,6 +84,8 @@ to_put_post:
 - put: postgresql-hll_commit
   params:
     repository: postgresql-hll_src
+    tag: postgresql-hll_src/VERSION
+    tag_prefix: gpdb-
 on_success:
   put: slack_notify
   params:

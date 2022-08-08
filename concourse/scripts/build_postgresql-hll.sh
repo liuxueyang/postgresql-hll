@@ -22,8 +22,9 @@ function pkg() {
 
     mkdir -p $TOP_DIR/bin_postgresql-hll
 
-    $CWDIR/pack.sh -p /usr/local/greenplum-db-devel/ -f "$TOP_DIR/bin_postgresql-hll/postgresql-hll-${OS_NAME}_x86_64.tar.gz"
-    cp "$TOP_DIR/bin_postgresql-hll/postgresql-hll-${OS_NAME}_x86_64.tar.gz" "$TOP_DIR/bin_postgresql-hll/postgresql-hll.tar.gz"
+    CURRENT_VERSION=$(cat /home/gpadmin/postgresql-hll_src/VERSION)
+    $CWDIR/pack.sh -p /usr/local/greenplum-db-devel/ -f "$TOP_DIR/bin_postgresql-hll/postgresql-hll-${CURRENT_VERSION}-${OS_NAME}_x86_64.tar.gz"
+    cp "$TOP_DIR/bin_postgresql-hll/postgresql-hll-${CURRENT_VERSION}-${OS_NAME}_x86_64.tar.gz" "$TOP_DIR/bin_postgresql-hll/postgresql-hll.tar.gz"
 }
 
 function _main() {
