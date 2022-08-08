@@ -25,7 +25,7 @@ resources:
   check_every: 24h
   source:
     disable_forks: false
-    repository: liuxueyang/postgresql-hll
+    repository: greenplum-db/postgresql-hll
     access_token: ((extension/github-access-token))
     base_branch: gpdb
 # Commit trigger
@@ -36,7 +36,7 @@ resources:
   check_every: 1h
   source:
     branch: ((postgresql-hll-branch))
-    uri: https://github.com/liuxueyang/postgresql-hll.git
+    uri: https://github.com/greenplum-db/postgresql-hll.git
     username: ((extension/github-access-token))
     password: x-oauth-basic
 # Commit dev trigger. Not using webhook
@@ -45,7 +45,7 @@ resources:
   check_every: 1m
   source:
     branch: ((postgresql-hll-branch))
-    uri: https://github.com/liuxueyang/postgresql-hll.git
+    uri: https://github.com/greenplum-db/postgresql-hll.git
     username: ((extension/github-access-token))
     password: x-oauth-basic
 
