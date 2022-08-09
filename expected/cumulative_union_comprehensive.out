@@ -14,7 +14,9 @@ CREATE TABLE test_rhswkjtc (
     compressed_multiset         hll,
     union_cardinality           double precision,
     union_compressed_multiset   hll
-) DISTRIBUTED RANDOMLY;
+);
+NOTICE:  using default RANDOM distribution since no distribution was specified
+HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 -- Copy the CSV data into the table
 --
 \copy test_rhswkjtc (cardinality,compressed_multiset,union_cardinality,union_compressed_multiset) from sql/data/cumulative_union_comprehensive.csv with csv header

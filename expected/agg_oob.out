@@ -14,7 +14,9 @@ NOTICE:  table "test_wdflbzfx" does not exist, skipping
 CREATE TABLE test_wdflbzfx (
     recno    SERIAL,
     v1	     hll
-) DISTRIBUTED RANDOMLY;
+);
+NOTICE:  using default RANDOM distribution since no distribution was specified
+HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 INSERT INTO test_wdflbzfx (recno, v1) VALUES
 -- NULL --
 (0, NULL),

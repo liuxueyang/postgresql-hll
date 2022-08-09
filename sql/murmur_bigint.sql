@@ -11,7 +11,7 @@ CREATE TABLE test_seznjqbb (
     seed                        integer,
     pre_hash_long               bigint,
     post_hash_long              bigint
-) DISTRIBUTED RANDOMLY;
+);
 
 \copy test_seznjqbb (seed, pre_hash_long, post_hash_long) from sql/data/murmur_bigint.csv with csv header
 

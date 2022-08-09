@@ -17,7 +17,7 @@ CREATE TABLE test_ptwysrqk (
     cardinality                 double precision,
     raw_value                   bigint,
     union_compressed_multiset   hll
-) DISTRIBUTED RANDOMLY;
+);
 
 -- Copy the CSV data into the table
 --

@@ -11,7 +11,7 @@ CREATE TABLE test_qfwzdmoy (
     seed                        integer,
     pre_hash_long               bytea,
     post_hash_long              bigint
-) DISTRIBUTED RANDOMLY;
+);
 
 \copy test_qfwzdmoy (seed, pre_hash_long, post_hash_long) from sql/data/murmur_bytea.csv with csv header
 

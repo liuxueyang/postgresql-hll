@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS test_khvengxf;
 
 CREATE TABLE test_khvengxf (
 	val    integer
-) DISTRIBUTED RANDOMLY;
+);
 
 insert into test_khvengxf(val) values (1), (2), (3);
 

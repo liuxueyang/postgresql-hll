@@ -14,7 +14,9 @@ CREATE TABLE test_qfwzdmoy (
     seed                        integer,
     pre_hash_long               bytea,
     post_hash_long              bigint
-) DISTRIBUTED RANDOMLY;
+);
+NOTICE:  using default RANDOM distribution since no distribution was specified
+HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \copy test_qfwzdmoy (seed, pre_hash_long, post_hash_long) from sql/data/murmur_bytea.csv with csv header
 SELECT COUNT(*) FROM test_qfwzdmoy;
  count 
