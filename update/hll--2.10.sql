@@ -271,7 +271,7 @@ CREATE FUNCTION hll_set_output_version(integer)
 CREATE FUNCTION hll_set_max_sparse(integer)
      RETURNS integer
      AS 'MODULE_PATHNAME'
-  LANGUAGE C STRICT;
+     LANGUAGE C STRICT IMMUTABLE;
 
 -- Change the default type modifier, empty and add aggregate defaults.
 CREATE FUNCTION hll_set_defaults(IN i_log2m integer,
