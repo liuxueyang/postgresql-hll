@@ -1,0 +1,6 @@
+-- start_matchignore
+# This pattern is extracted from gpdb/src/test/regress/init_file
+m/^(?:HINT|NOTICE):\s+.+\'DISTRIBUTED BY\' clause.*/
+m/^(NOTICE):\s+.+using default RANDOM distribution since.*/
+m/^Distributed randomly$/
+-- end_matchignore

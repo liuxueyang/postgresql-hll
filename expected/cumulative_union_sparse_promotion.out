@@ -24,8 +24,6 @@ CREATE TABLE test_bsnvqefe (
     union_cardinality           double precision,
     union_compressed_multiset   hll
 );
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 -- Copy the CSV data into the table
 --
 \copy test_bsnvqefe (cardinality,compressed_multiset,union_cardinality,union_compressed_multiset) from sql/data/cumulative_union_sparse_promotion.csv with csv header

@@ -12,8 +12,6 @@ NOTICE:  table "test_khvengxf" does not exist, skipping
 CREATE TABLE test_khvengxf (
 	val    integer
 );
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 insert into test_khvengxf(val) values (1), (2), (3);
 -- Check default and explicit signatures.
 select hll_print(hll_add_agg(hll_hash_integer(val)))

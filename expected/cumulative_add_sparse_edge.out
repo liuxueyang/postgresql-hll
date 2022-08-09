@@ -24,8 +24,6 @@ CREATE TABLE test_eopzdzwz (
     raw_value                   bigint,
     union_compressed_multiset   hll
 );
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 -- Copy the CSV data into the table
 --
 \copy test_eopzdzwz (cardinality, raw_value, union_compressed_multiset) from sql/data/cumulative_add_sparse_edge.csv with csv header

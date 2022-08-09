@@ -11,59 +11,44 @@ DROP TABLE IF EXISTS test_qiundgkm;
 NOTICE:  table "test_qiundgkm" does not exist, skipping
 -- Using all defaults.
 CREATE TABLE test_qiundgkm (v1 hll);
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-Table "public.test_qiundgkm"
- Column | Type | Modifiers 
---------+------+-----------
- v1     | hll  | 
-Distributed randomly
+          Table "public.test_qiundgkm"
+ Column | Type | Collation | Nullable | Default 
+--------+------+-----------+----------+---------
+ v1     | hll  |           |          | 
 
 DROP TABLE test_qiundgkm;
 -- Partial defaults.
 CREATE TABLE test_qiundgkm (v1 hll(10));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |      Type      | Modifiers 
---------+----------------+-----------
- v1     | hll(10,5,-1,1) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type      | Collation | Nullable | Default 
+--------+----------------+-----------+----------+---------
+ v1     | hll(10,5,-1,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(10, 4));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |      Type      | Modifiers 
---------+----------------+-----------
- v1     | hll(10,4,-1,1) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type      | Collation | Nullable | Default 
+--------+----------------+-----------+----------+---------
+ v1     | hll(10,4,-1,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |      Type      | Modifiers 
---------+----------------+-----------
- v1     | hll(10,4,64,1) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type      | Collation | Nullable | Default 
+--------+----------------+-----------+----------+---------
+ v1     | hll(10,4,64,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(10, 4, 64, 0));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |      Type      | Modifiers 
---------+----------------+-----------
- v1     | hll(10,4,64,0) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type      | Collation | Nullable | Default 
+--------+----------------+-----------+----------+---------
+ v1     | hll(10,4,64,0) |           |          | 
 
 DROP TABLE test_qiundgkm;
 -- ERROR:  invalid number of type modifiers
@@ -80,14 +65,11 @@ ERROR:  log2m modifier must be between 0 and 17
 LINE 1: CREATE TABLE test_qiundgkm (v1 hll(-1));
                                        ^
 CREATE TABLE test_qiundgkm (v1 hll(0));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |     Type      | Modifiers 
---------+---------------+-----------
- v1     | hll(0,5,-1,1) | 
-Distributed randomly
+              Table "public.test_qiundgkm"
+ Column |     Type      | Collation | Nullable | Default 
+--------+---------------+-----------+----------+---------
+ v1     | hll(0,5,-1,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(31));
@@ -111,25 +93,19 @@ ERROR:  regwidth modifier must be between 0 and 7
 LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, -1));
                                        ^
 CREATE TABLE test_qiundgkm (v1 hll(11, 0));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |      Type      | Modifiers 
---------+----------------+-----------
- v1     | hll(11,0,-1,1) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type      | Collation | Nullable | Default 
+--------+----------------+-----------+----------+---------
+ v1     | hll(11,0,-1,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(11, 7));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |      Type      | Modifiers 
---------+----------------+-----------
- v1     | hll(11,7,-1,1) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type      | Collation | Nullable | Default 
+--------+----------------+-----------+----------+---------
+ v1     | hll(11,7,-1,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 -- ERROR:  regwidth modifier must be between 0 and 7
@@ -146,36 +122,27 @@ ERROR:  expthresh modifier must be between -1 and 16383
 LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, -2));
                                        ^
 CREATE TABLE test_qiundgkm (v1 hll(11, 5, -1));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |      Type      | Modifiers 
---------+----------------+-----------
- v1     | hll(11,5,-1,1) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type      | Collation | Nullable | Default 
+--------+----------------+-----------+----------+---------
+ v1     | hll(11,5,-1,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(11, 5, 0));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-    Table "public.test_qiundgkm"
- Column |     Type      | Modifiers 
---------+---------------+-----------
- v1     | hll(11,5,0,1) | 
-Distributed randomly
+              Table "public.test_qiundgkm"
+ Column |     Type      | Collation | Nullable | Default 
+--------+---------------+-----------+----------+---------
+ v1     | hll(11,5,0,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-     Table "public.test_qiundgkm"
- Column |      Type       | Modifiers 
---------+-----------------+-----------
- v1     | hll(11,5,128,1) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type       | Collation | Nullable | Default 
+--------+-----------------+-----------+----------+---------
+ v1     | hll(11,5,128,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(11, 5, 4294967296));
@@ -199,25 +166,19 @@ ERROR:  sparseon modifier must be 0 or 1
 LINE 1: CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, -1));
                                        ^
 CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 0));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-     Table "public.test_qiundgkm"
- Column |      Type       | Modifiers 
---------+-----------------+-----------
- v1     | hll(11,5,128,0) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type       | Collation | Nullable | Default 
+--------+-----------------+-----------+----------+---------
+ v1     | hll(11,5,128,0) |           |          | 
 
 DROP TABLE test_qiundgkm;
 CREATE TABLE test_qiundgkm (v1 hll(11, 5, 128, 1));
-NOTICE:  using default RANDOM distribution since no distribution was specified
-HINT:  Consider including the 'DISTRIBUTED BY' clause to determine the distribution of rows.
 \d test_qiundgkm
-     Table "public.test_qiundgkm"
- Column |      Type       | Modifiers 
---------+-----------------+-----------
- v1     | hll(11,5,128,1) | 
-Distributed randomly
+               Table "public.test_qiundgkm"
+ Column |      Type       | Collation | Nullable | Default 
+--------+-----------------+-----------+----------+---------
+ v1     | hll(11,5,128,1) |           |          | 
 
 DROP TABLE test_qiundgkm;
 -- ERROR:  nosparse modifier must be 0 or 1
