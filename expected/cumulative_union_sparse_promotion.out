@@ -23,7 +23,7 @@ CREATE TABLE test_bsnvqefe (
     compressed_multiset         hll,
     union_cardinality           double precision,
     union_compressed_multiset   hll
-);
+) DISTRIBUTED RANDOMLY;
 -- Copy the CSV data into the table
 --
 \copy test_bsnvqefe (cardinality,compressed_multiset,union_cardinality,union_compressed_multiset) from sql/data/cumulative_union_sparse_promotion.csv with csv header

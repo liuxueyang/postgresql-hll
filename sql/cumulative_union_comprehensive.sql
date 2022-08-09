@@ -11,7 +11,7 @@ CREATE TABLE test_rhswkjtc (
     compressed_multiset         hll,
     union_cardinality           double precision,
     union_compressed_multiset   hll
-);
+) DISTRIBUTED RANDOMLY;
 
 -- Copy the CSV data into the table
 --
