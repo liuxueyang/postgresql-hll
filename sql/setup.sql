@@ -1,9 +1,5 @@
 CREATE EXTENSION hll VERSION '2.16';
 
--- Using random distribution policy by default when creating tables
-ALTER database contrib_regression
-  SET gp_create_table_random_default_distribution TO 'on';
-
 -- We only need the latest sql file when release. So there is no need to test
 -- the upgrade SQL file
 
