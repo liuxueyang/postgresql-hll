@@ -2833,7 +2833,7 @@ hll_set_max_sparse(PG_FUNCTION_ARGS)
                 (errcode(ERRCODE_DATA_EXCEPTION),
                  errmsg("sparse threshold must be in range [-1,MAXINT]")));
 
-    if (IS_QUERY_DISPATCHER())
+    if (Gp_role == GP_ROLE_DISPATCH)
     {
         initStringInfo(&sql);
         appendStringInfo(&sql, "select hll_set_max_sparse(%d);", maxsparse);
