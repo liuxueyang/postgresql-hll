@@ -180,5 +180,6 @@ FROM
 	add_test_table 
 GROUP BY 1;
 
+RESET statement_mem;
 DROP TABLE tt1;
 DROP TABLE add_test_table;

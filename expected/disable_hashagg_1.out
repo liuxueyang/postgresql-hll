@@ -387,5 +387,6 @@ GROUP BY 1;
  Optimizer: Pivotal Optimizer (GPORCA)
 (7 rows)
 
+RESET statement_mem;
 DROP TABLE tt1;
 DROP TABLE add_test_table;
