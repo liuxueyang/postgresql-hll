@@ -92,9 +92,9 @@ FROM
 GROUP BY(id)
 HAVING hll_cardinality(hll_union_agg(sd)) > 1;
 
--- Test hll_add_agg, first set work_mem to 256MB in order to use hash aggregate
+-- Test hll_add_agg, first set statement_mem to 256MB in order to use hash aggregate
 -- before forcing group aggregate
-SET work_mem TO '256MB';
+SET statement_mem TO '256MB';
 
 CREATE TABLE add_test_table(c1 bigint, c2 bigint);
 INSERT INTO add_test_table SELECT g, g FROM generate_series(1, 1000) AS g;
@@ -180,6 +180,6 @@ FROM
 	add_test_table 
 GROUP BY 1;
 
-RESET work_mem;
+RESET statement_mem;
 DROP TABLE tt1;
 DROP TABLE add_test_table;

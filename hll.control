@@ -16,3 +16,4 @@
 comment = 'type for storing hyperloglog data'
 default_version = '2.16'
 module_pathname = '$libdir/hll'
+relocatable = true
