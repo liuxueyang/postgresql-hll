@@ -71,25 +71,23 @@ setup_gpadmin() {
         groupadd supergroup
         case "$test_os" in
             rhel*)
-                /usr/sbin/useradd -G supergroup,tty gpadmin
+                /usr/sbin/useradd -U -G supergroup,tty -m gpadmin
                 ;;
             ubuntu*)
-                /usr/sbin/useradd -G supergroup,tty gpadmin -s /bin/bash
+                /usr/sbin/useradd -U -G supergroup,tty -m -s /bin/bash gpadmin
                 ;;
             sles*)
                 # create a default group gpadmin, and add user gpadmin to group gapdmin, supergroup,
                 # tty
-                /usr/sbin/useradd -U -G supergroup,tty gpadmin
+                /usr/sbin/useradd -U -G supergroup,tty -m gpadmin
                 ;;
             photon*)
-                /usr/sbin/useradd -U -G supergroup,tty,root gpadmin
+                /usr/sbin/useradd -U -G supergroup,tty,root -m gpadmin
                 ;;
             *) echo "Unknown OS: $test_os"; exit 1 ;;
         esac
         echo -e "password\npassword" | passwd gpadmin
     fi
-    mkdir -p /home/gpadmin
-    chown gpadmin:gpadmin /home/gpadmin
 
     chown -R gpadmin:gpadmin /tmp/build
     ln -s "${CONCOURSE_WORK_DIR}"/* /home/gpadmin

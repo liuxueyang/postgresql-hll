@@ -15,7 +15,6 @@ function pkg() {
     fi
 
     pushd /home/gpadmin/postgresql-hll_src
-    make clean
     make
     make install
     popd
