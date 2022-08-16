@@ -11,10 +11,10 @@ function pkg() {
     source /usr/local/greenplum-db-devel/greenplum_path.sh
 
     echo Before export: `gcc --version`
-    if [ "${OS_NAME}" = "rhel6" ] || [ "${OS_NAME}" = "rhel7" ]; then
-        export CC="$(which gcc)"
-    fi
-    echo After export: `gcc --version`
+    # if [ "${OS_NAME}" = "rhel6" ] || [ "${OS_NAME}" = "rhel7" ]; then
+    #     export CC="$(which gcc)"
+    # fi
+    # echo After export: `gcc --version`
 
     pushd /home/gpadmin/postgresql-hll_src
     make
