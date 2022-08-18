@@ -101,6 +101,8 @@ function install_gpdb() {
 }
 
 function setup_gpadmin_bashrc() {
+    # Create .bashrc file from scratch. Ubuntu contains default .bashrc by default
+    # which can't be sourced by script
     {
         echo "source /usr/local/greenplum-db-devel/greenplum_path.sh"
         echo "export OS_NAME=${OS_NAME}"
