@@ -23,6 +23,7 @@ function pkg() {
 }
 
 function _main() {
+    echo ${OS_NAME}
     time pkg
 }
 
