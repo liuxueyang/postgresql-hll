@@ -118,7 +118,7 @@ case "$1" in
     build)
         echo "build: OS_NAME=${OS_NAME}"
         su gpadmin -c \
-           "source /home/gpadmin/.bashrc && OS_NAME=${OS_NAME} &&\
+           "source /home/gpadmin/.bashrc &&\
             . /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
         ;;
     test)
