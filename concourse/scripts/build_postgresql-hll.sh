@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo begining of build.sh: OS_NAME=${OS_NAME}
+
 set -exo pipefail
 
 CWDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

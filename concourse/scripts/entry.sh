@@ -116,17 +116,15 @@ setup_gpadmin_bashrc
 # gpadmin. bashrc won't be read by 'su', it needs to be sourced explicitly.
 case "$1" in
     build)
-        touch /home/gpadmin/.bashrc
+        echo "build: OS_NAME=${OS_NAME}"
         su gpadmin -c \
-            "source /home/gpadmin/.bashrc &&\
+           "source /home/gpadmin/.bashrc && OS_NAME=${OS_NAME} &&\
             . /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
         ;;
     test)
         # Create GPDB cluster
         source "/home/gpadmin/gpdb_src/concourse/scripts/common.bash"
         make_cluster
-        # To make fly debug easier
-        echo "source /usr/local/greenplum-db-devel/greenplum_path.sh" >> /home/gpadmin/.bashrc
         su gpadmin -c \
             "source /home/gpadmin/.bashrc &&\
             . /home/gpadmin/postgresql-hll_src/concourse/scripts/test_postgresql-hll.sh"
