@@ -119,7 +119,7 @@ case "$1" in
         touch /home/gpadmin/.bashrc
         su gpadmin -c \
             "source /home/gpadmin/.bashrc &&\
-            /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
+            . /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
         ;;
     test)
         # Create GPDB cluster
@@ -129,7 +129,7 @@ case "$1" in
         echo "source /usr/local/greenplum-db-devel/greenplum_path.sh" >> /home/gpadmin/.bashrc
         su gpadmin -c \
             "source /home/gpadmin/.bashrc &&\
-            /home/gpadmin/postgresql-hll_src/concourse/scripts/test_postgresql-hll.sh"
+            . /home/gpadmin/postgresql-hll_src/concourse/scripts/test_postgresql-hll.sh"
         ;;
     *)
         echo "Unknown target task $1"
