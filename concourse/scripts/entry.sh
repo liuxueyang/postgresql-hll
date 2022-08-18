@@ -121,7 +121,7 @@ case "$1" in
         # to `su` as a workaround.
         su gpadmin -c \
            "source /home/gpadmin/.bashrc && OS_NAME=${OS_NAME} && \
-            /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
+            . /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
         ;;
     test)
         # Create GPDB cluster
@@ -129,7 +129,7 @@ case "$1" in
         make_cluster
         su gpadmin -c \
             "source /home/gpadmin/.bashrc && \
-            /home/gpadmin/postgresql-hll_src/concourse/scripts/test_postgresql-hll.sh"
+            . /home/gpadmin/postgresql-hll_src/concourse/scripts/test_postgresql-hll.sh"
         ;;
     *)
         echo "Unknown target task $1"
