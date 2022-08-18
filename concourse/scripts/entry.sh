@@ -116,9 +116,11 @@ setup_gpadmin_bashrc
 # gpadmin. bashrc won't be read by 'su', it needs to be sourced explicitly.
 case "$1" in
     build)
-        echo "build: OS_NAME=${OS_NAME}"
+        # There are some different behaviors between ubuntu and rhel. On ubuntu, build_postgresql-hll.sh
+        # can't get the exported variable OS_NAME from .bashrc. I set it in the command passed
+        # to `su` as a workaround.
         su gpadmin -c \
-           "source /home/gpadmin/.bashrc &&\
+           "source /home/gpadmin/.bashrc && OS_NAME=${OS_NAME} &&\
             . /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
         ;;
     test)
