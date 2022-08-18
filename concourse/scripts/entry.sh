@@ -104,7 +104,7 @@ function setup_gpadmin_bashrc() {
     {
         echo "source /usr/local/greenplum-db-devel/greenplum_path.sh"
         echo "export OS_NAME=${OS_NAME}"
-    } >> /home/gpadmin/.bashrc
+    } > /home/gpadmin/.bashrc
 }
 
 # Setup common environment
@@ -120,8 +120,8 @@ case "$1" in
         # can't get the exported variable OS_NAME from .bashrc. I set it in the command passed
         # to `su` as a workaround.
         su gpadmin -c \
-           "source /home/gpadmin/.bashrc && OS_NAME=${OS_NAME} && \
-            . /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
+           "source /home/gpadmin/.bashrc && \
+            /home/gpadmin/postgresql-hll_src/concourse/scripts/build_postgresql-hll.sh"
         ;;
     test)
         # Create GPDB cluster
@@ -129,7 +129,7 @@ case "$1" in
         make_cluster
         su gpadmin -c \
             "source /home/gpadmin/.bashrc && \
-            . /home/gpadmin/postgresql-hll_src/concourse/scripts/test_postgresql-hll.sh"
+            /home/gpadmin/postgresql-hll_src/concourse/scripts/test_postgresql-hll.sh"
         ;;
     *)
         echo "Unknown target task $1"
